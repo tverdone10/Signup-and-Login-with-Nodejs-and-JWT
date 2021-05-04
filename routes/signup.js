@@ -61,7 +61,7 @@ router.post("/", async (req, res) => {
 
     await user.save();
 
-    // Create our Auth token
+    // Placeholder for all of our JWT stuff
 
     let token = jwt.sign(
       {
@@ -77,6 +77,7 @@ router.post("/", async (req, res) => {
     });
 
     return res.status(200).json({
+        message: "You've successfully signed up!",
         token: token,
         user: userInfo
     })
