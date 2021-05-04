@@ -4,6 +4,10 @@ const app = express();
 
 const PORT = 5000;
 
+// middleware
+app.use(express.json()); 
+app.use(express.urlencoded());
+
 // Store the connection string here (Better to have it in an env file, but just leaving it here for demonstration purposes)
 const atlas_uri = 'mongodb+srv://newUser:newUserPassword@cluster0.utqse.mongodb.net/UserSignup?retryWrites=true&w=majority'
 
