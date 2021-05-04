@@ -27,7 +27,9 @@ connection.once("open", () => {
 
 // Connect our routes to the server here
 const signup = require("./routes/signup")
+const login = require("./routes/login")
 app.use("/api/signup", signup)
+app.use("/api/login", login)
 
 // Start the server
 app.listen(PORT, () => console.log(`server is running on port ${PORT}`))

@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs");
 
 router.post("/", async (req, res) => {
   try {
-    let userData = {
+    let userInfo = {
       email: req.body.email,
       password: req.body.password,
     };
@@ -46,7 +46,15 @@ router.post("/", async (req, res) => {
         sameSite: "none"
     });
 
+    return res.status(200).json({
+        message: "You've successfully logged in!",
+        token: token,
+        user: userInfo
+      });
+
   } catch(error) {
       console.log(error)
   }
 });
+
+module.exports = router;
