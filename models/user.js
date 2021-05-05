@@ -16,8 +16,6 @@ const userSchema = mongoose.Schema({
         required: true
     },
     
-    // Hobbies will just be an example for some user data
-    hobbies: Array,
     
     password: {
         type: String,

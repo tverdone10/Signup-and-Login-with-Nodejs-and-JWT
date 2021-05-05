@@ -61,24 +61,23 @@ router.post("/", async (req, res) => {
 
     await user.save();
 
-    // Placeholder for all of our JWT stuff
+    // Here we'll create our token -- it takes the payload and our secret token
+    // You'll want to hide this token in an env, but I'm putting it here for demonstration
 
-    let token = jwt.sign(
-      {
-        foo: "bar",
-      },
-      "shhhhh"
-    );
 
-    res.cookie('web-token', token, {
-        httpOnly: true,
-        secure: true,
-        sameSite: "none"
+    let accessToken = jwt.sign(user.email, "Secret_Value");
+
+    // Here we can make our accessToken a cookie, which can be used as a header to authorize our user
+    
+    res.cookie('authorization', accessToken, {
+      httpOnly: true, //cookies are only accessible from a server
+      secure: true, //cookie must be transmitted over https
+      sameSite: 'none' //prevents cookie from being sent in cross site requests
     });
 
     return res.status(200).json({
         message: "You've successfully signed up!",
-        token: token,
+        token: accessToken,
         user: userInfo
     })
   } catch (error) {

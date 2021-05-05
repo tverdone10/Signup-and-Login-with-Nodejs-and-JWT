@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const authenticate = require ("./middleware/authenticate")
 const app = express();
 
 const PORT = 5000;
@@ -28,8 +29,10 @@ connection.once("open", () => {
 // Connect our routes to the server here
 const signup = require("./routes/signup")
 const login = require("./routes/login")
+const post = require("./routes/post");
 app.use("/api/signup", signup)
 app.use("/api/login", login)
+app.use("/api/post", post)
 
 // Start the server
 app.listen(PORT, () => console.log(`server is running on port ${PORT}`))
