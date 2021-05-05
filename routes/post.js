@@ -5,6 +5,8 @@ const User = require ("../models/user")
 const Post = require("../models/posts");
 
 
+// Here you will only be allowed to post if you have a valid auth token, which will be handled by our "auth" middleware
+
 router.post("/", auth, async function (req, res, next) {
   try {
     console.log(req.user)
@@ -24,6 +26,7 @@ router.post("/", auth, async function (req, res, next) {
   }
 });
 
+// Here we will get all of the posts we've made on our own account, also handled by our "auth" middleware function
 router.get("/myposts", auth, async function (req, res, next) {
   try {
 

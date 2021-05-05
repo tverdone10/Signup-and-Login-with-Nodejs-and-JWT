@@ -33,11 +33,17 @@ router.post("/", async (req, res) => {
 
 
     // Here we'll create our token -- it takes the payload and our secret token
-    // You'll want to hide this token in an env, but I'm putting it here for demonstration
-
+    // You'll want to ideally hide this token in an env, but I'm putting it here for demonstration
 
     let accessToken = jwt.sign(user, "Secret_Value");
 
+    // Here we can make our accessToken a cookie, which can be used as a header to authorize our user
+    
+    res.cookie('authorization', accessToken, {
+      httpOnly: true, //cookies are only accessible from a server
+      secure: true, //cookie must be transmitted over https
+      sameSite: 'none' //prevents cookie from being sent in cross site requests
+    });
 
     return res.status(200).json({
         message: "You've successfully logged in!",

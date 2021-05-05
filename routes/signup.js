@@ -67,10 +67,12 @@ router.post("/", async (req, res) => {
 
     let accessToken = jwt.sign(user, "Secret_Value");
 
-    res.cookie('web-token', token, {
-        httpOnly: true,
-        secure: true,
-        sameSite: "none"
+    // Here we can make our accessToken a cookie, which can be used as a header to authorize our user
+    
+    res.cookie('authorization', accessToken, {
+      httpOnly: true, //cookies are only accessible from a server
+      secure: true, //cookie must be transmitted over https
+      sameSite: 'none' //prevents cookie from being sent in cross site requests
     });
 
     return res.status(200).json({
