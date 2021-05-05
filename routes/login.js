@@ -36,13 +36,9 @@ router.post("/", async (req, res) => {
     // You'll want to hide this token in an env, but I'm putting it here for demonstration
 
 
-    let accessToken = jwt.sign(user.email, "Secret_Value");
+    let accessToken = jwt.sign(user, "Secret_Value");
 
-    res.cookie('web-token', token, {
-        httpOnly: true,
-        secure: true,
-        sameSite: "none"
-    });
+
     return res.status(200).json({
         message: "You've successfully logged in!",
         token: accessToken,
