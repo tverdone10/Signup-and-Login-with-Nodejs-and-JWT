@@ -65,7 +65,7 @@ router.post("/", async (req, res) => {
     // You'll want to hide this token in an env, but I'm putting it here for demonstration
 
 
-    let accessToken = jwt.sign(user, "Secret_Value");
+    let accessToken = jwt.sign(user.email, "Secret_Value");
 
     // Here we can make our accessToken a cookie, which can be used as a header to authorize our user
     
