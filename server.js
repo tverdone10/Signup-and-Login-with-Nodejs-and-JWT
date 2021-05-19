@@ -25,7 +25,7 @@ const connection = mongoose.connection
 connection.once("open", () => {
     console.log("MongoDB Atlas connection as been established!")
 })
-
+console.log("hello")
 // Connect our routes to the server here
 const signup = require("./routes/signup")
 const login = require("./routes/login")
